@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aadhar Update Camp — UME Preschool & Daycare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0b3d66;
+    --blue:#1565c0;
+    --blue-light:#e8f1fb;
+    --saffron:#ff9933;
+    --green:#138808;
+    --ink:#1c2733;
+    --ink-soft:#5a6b7a;
+    --border:#d5e0ea;
+    --success-bg:#e6f6ec;
+    --success-border:#8fd6ab;
+    --success-ink:#1c7a3d;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    font-family:'Noto Sans','Noto Sans Tamil',sans-serif;
+    color:var(--ink);
+    background:linear-gradient(180deg,#f4f8fc 0%, #eef3f8 100%);
+    padding:0 0 60px;
+  }
+
+  .ta{
+    font-family:'Noto Sans Tamil','Noto Sans',sans-serif;
+    display:block;
+    font-size:0.86em;
+    color:var(--ink-soft);
+    font-weight:500;
+    margin-top:2px;
+  }
+
+  header{
+    background:linear-gradient(135deg, var(--navy), var(--blue));
+    color:#fff;
+    padding:34px 20px 30px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:6px;
+    background:linear-gradient(90deg, var(--saffron) 0 33%, #fff 33% 66%, var(--green) 66% 100%);
+  }
+  header h1{
+    margin:0 0 6px;
+    font-size:clamp(22px,4.5vw,30px);
+    font-weight:700;
+    line-height:1.3;
+  }
+  header .h1-ta{
+    display:block;
+    font-family:'Noto Sans Tamil',sans-serif;
+    font-size:0.72em;
+    font-weight:600;
+    opacity:0.92;
+    margin-top:4px;
+  }
+  header p.meta{
+    margin:14px 0 0;
+    font-size:15.5px;
+    opacity:0.95;
+  }
+  header p.meta .ta{
+    color:#eaf2fb;
+    opacity:0.9;
+  }
+  header p.meta b{ font-weight:700; }
+
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 18px;
+  }
+
+  .card{
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(11,61,102,0.10);
+    border:1px solid var(--border);
+    margin-top:-26px;
+    padding:30px 26px 26px;
+    position:relative;
+    z-index:2;
+  }
+
+  .field{ margin-bottom:22px; }
+
+  .field label{
+    display:block;
+    font-weight:700;
+    font-size:15.5px;
+    color:var(--navy);
+    margin-bottom:8px;
+  }
+  .field label .req{ color:#d64545; margin-left:2px; }
+
+  input[type="text"],
+  input[type="tel"],
+  textarea{
+    width:100%;
+    padding:13px 14px;
+    font-family:inherit;
+    font-size:15.5px;
+    color:var(--ink);
+    background:#fbfdff;
+    border:1.5px solid var(--border);
+    border-radius:12px;
+    outline:none;
+    transition:border-color .18s ease, box-shadow .18s ease;
+  }
+  textarea{ min-height:90px; resize:vertical; line-height:1.5; }
+
+  input:focus, textarea:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 4px rgba(21,101,192,0.12);
+    background:#fff;
+  }
+
+  .hint{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+
+  .display-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    background:var(--blue-light);
+    border:1.5px dashed #a9c8e8;
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .display-box .value{
+    font-size:20px;
+    font-weight:700;
+    color:var(--navy);
+    white-space:nowrap;
+  }
+
+  .fee-box{
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+  }
+  .fee-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:6px 0;
+  }
+  .fee-row + .fee-row{
+    border-top:1px dashed #a9c8e8;
+    margin-top:6px;
+    padding-top:12px;
+  }
+  .fee-row .fee-label{ font-size:15px; }
+  .fee-row .value{ font-size:18px; }
+
+  .radio-group{
+    display:flex;
+    gap:14px;
+  }
+  .radio-option{
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:13px 14px;
+    background:#fbfdff;
+    border:1.5px solid var(--border);
+    border-radius:12px;
+    cursor:pointer;
+    transition:border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+  .radio-option:has(input:checked){
+    border-color:var(--blue);
+    background:var(--blue-light);
+    box-shadow:0 0 0 3px rgba(21,101,192,0.10);
+  }
+  .radio-option input[type="radio"]{
+    width:18px;
+    height:18px;
+    accent-color:var(--blue);
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .radio-option .radio-text{
+    font-weight:600;
+    font-size:15.5px;
+    color:var(--ink);
+  }
+  .radio-option .radio-text .ta{
+    margin-top:1px;
+  }
+
+  .token-value{
+    font-size:24px;
+    letter-spacing:0.5px;
+  }
+  .token-pending{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+
+  .save-btn{
+    width:100%;
+    margin-top:6px;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    font-family:inherit;
+    font-weight:700;
+    font-size:17px;
+    color:#fff;
+    background:linear-gradient(120deg, var(--blue), var(--navy));
+    cursor:pointer;
+    box-shadow:0 10px 24px rgba(21,101,192,0.30);
+    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .save-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 28px rgba(21,101,192,0.36); }
+  .save-btn:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
+  .save-btn .btn-ta{
+    display:block;
+    font-family:'Noto Sans Tamil',sans-serif;
+    font-size:0.68em;
+    font-weight:600;
+    opacity:0.9;
+    margin-top:2px;
+  }
+
+  .status-msg{
+    display:none;
+    margin-top:18px;
+    padding:16px 18px;
+    border-radius:14px;
+    text-align:center;
+  }
+  .status-msg.show{ display:block; }
+  .status-msg.success{
+    background:var(--success-bg);
+    border:1px solid var(--success-border);
+    color:var(--success-ink);
+  }
+  .status-msg.error{
+    background:#fdecec;
+    border:1px solid #f3b7b7;
+    color:#a3372c;
+  }
+  .status-msg .line1{ font-weight:700; font-size:16px; }
+  .status-msg .line1-ta{
+    display:block;
+    font-family:'Noto Sans Tamil',sans-serif;
+    font-weight:600;
+    font-size:0.85em;
+    margin-top:2px;
+  }
+  .status-msg .token-line{
+    margin-top:8px;
+    font-size:15px;
+  }
+  .status-msg .token-line b{ font-size:19px; }
+
+  .footer-card{
+    max-width:640px;
+    margin:26px auto 0;
+    padding:0 18px;
+  }
+  .footer-inner{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px 24px;
+    text-align:center;
+  }
+  .footer-inner h3{
+    margin:0 0 10px;
+    font-size:16px;
+    color:var(--navy);
+  }
+  .footer-inner p{
+    margin:6px 0;
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .footer-inner a{
+    color:var(--blue);
+    font-weight:700;
+    text-decoration:none;
+  }
+  .map-frame{
+    width:100%;
+    height:230px;
+    border:0;
+    border-radius:12px;
+    margin-top:14px;
+    display:block;
+  }
+  .directions-link{
+    display:inline-block;
+    margin-top:12px;
+    font-size:14.5px;
+    font-weight:700;
+    color:#fff;
+    background:var(--blue);
+    padding:10px 18px;
+    border-radius:10px;
+    text-decoration:none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>
+    Aadhar Update Camp
+    <span class="h1-ta">ஆதார் புதுப்பிப்பு முகாம்</span>
+  </h1>
+  <p class="meta">
+    at <b>UME Preschool &amp; Daycare</b> &nbsp;|&nbsp; 5th September 2026
+    <span class="ta">UME ப்ரீஸ்கூல் &amp; டேகேரில் &nbsp;|&nbsp; செப்டம்பர் 5, 2026</span>
+  </p>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <form id="regForm" novalidate>
+
+      <div class="field">
+        <label for="fullName">Name with Surname<span class="req">*</span>
+          <span class="ta">பெயர் (குடும்பப்பெயருடன்)</span>
+        </label>
+        <input type="text" id="fullName" name="fullName" placeholder="e.g. Meena Krishnan" autocomplete="off" required>
+      </div>
+
+      <div class="field">
+        <label for="changes">What changes are needed in your Aadhar?<span class="req">*</span>
+          <span class="ta">உங்கள் ஆதாரில் என்ன மாற்றங்கள் தேவை?</span>
+        </label>
+        <textarea id="changes" name="changes" placeholder="e.g. Update address, correct date of birth, update mobile number..." required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="contact">Contact Number<span class="req">*</span>
+          <span class="ta">தொடர்பு எண்</span>
+        </label>
+        <input type="tel" id="contact" name="contact" placeholder="10-digit mobile number" inputmode="numeric" maxlength="10" autocomplete="off" required>
+        <div class="hint">Exactly 10 digits, numbers only</div>
+      </div>
+
+      <div class="field">
+        <label>Are your Biometrics recently updated?<span class="req">*</span>
+          <span class="ta">உங்கள் பயோமெட்ரிக் (கை ரேகை/கண் பாவை) சமீபத்தில் புதுப்பிக்கப்பட்டதா?</span>
+        </label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="biometrics" value="Yes" required>
+            <span class="radio-text">Yes<span class="ta">ஆம்</span></span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="biometrics" value="No" required>
+            <span class="radio-text">No<span class="ta">இல்லை</span></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Amount to be Paid
+          <span class="ta">செலுத்த வேண்டிய தொகை</span>
+        </label>
+        <div class="display-box fee-box">
+          <div class="fee-row">
+            <span class="fee-label">Biometric Update<span class="ta">பயோமெட்ரிக் புதுப்பிப்பு</span></span>
+            <span class="value">₹150</span>
+          </div>
+          <div class="fee-row">
+            <span class="fee-label">All Other Updates<span class="ta">மற்ற அனைத்து புதுப்பிப்புகளும்</span></span>
+            <span class="value">₹200</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Token Number
+          <span class="ta">டோக்கன் எண்</span>
+        </label>
+        <div class="display-box">
+          <span class="token-pending" id="tokenLabel">Assigned after you click Save</span>
+          <span class="value token-value" id="tokenDisplay">—</span>
+        </div>
+      </div>
+
+      <button type="submit" class="save-btn" id="saveBtn">
+        Save
+        <span class="btn-ta">சேமி</span>
+      </button>
+
+      <div class="status-msg" id="statusMsg"></div>
+    </form>
+  </div>
+</div>
+
+<div class="footer-card">
+  <div class="footer-inner">
+    <h3>UME Preschool &amp; Daycare</h3>
+    <p>Contact <b>9176220957</b> / <b>7824051524</b> or email
+      <a href="mailto:umepreschool@gmail.com">umepreschool@gmail.com</a></p>
+    <p>15/7, Muthuswamy 1st Cross Street, Srinivasa Nagar,<br>Peerkankaranai, Chennai 600063</p>
+
+    <iframe class="map-frame"
+      src="https://maps.google.com/maps?q=15%2F7%20Muthuswamy%201st%20Cross%20Street%2C%20Srinivasa%20Nagar%2C%20Peerkankaranai%2C%20Chennai%20600063&output=embed"
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="UME Preschool location map"></iframe>
+
+    <a class="directions-link"
+      href="https://www.google.com/maps/search/?api=1&query=15%2F7+Muthuswamy+1st+Cross+Street%2C+Srinivasa+Nagar%2C+Peerkankaranai%2C+Chennai+600063"
+      target="_blank" rel="noopener">Get Directions</a>
+  </div>
+</div>
+
+<script>
+  /* =========================================================
+     GOOGLE FORM CONNECTION
+     ---------------------------------------------------------
+     1. Create a Google Form with these fields, in this order:
+        Name with Surname | Aadhar changes needed | Contact Number |
+        Biometrics recently updated (Yes/No) | Token Number
+        (The fee is shown on the page only — it is NOT sent to the
+        form, so there's no entry ID for it.)
+     2. Replace GOOGLE_FORM_ID and each entry.XXXXXXXXX below with
+        your form's real IDs (see the accompanying instructions).
+     ========================================================= */
+  // NOTE: submissions MUST post to .../formResponse, not .../viewform.
+  // .../viewform only loads the form page; it does not accept data.
+  const GOOGLE_FORM_ID = "1FAIpQLScv9REkrlOrhJjgRU17iVShaHZCMP2sTy7pwxSLgnqWZkEwOQ";
+  const GOOGLE_FORM_ACTION = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`;
+
+  const ENTRY_IDS = {
+    fullName:    "entry.1106370943",
+    changes:     "entry.626352202",
+    contact:     "entry.1711889306",
+    biometrics:  "entry.596072583", // <-- REPLACE with the "Biometrics recently updated" entry ID
+    token:       "entry.2000813478"
+  };
+
+  // Public counter used to hand out sequential token numbers across
+  // every visitor. Free, keyless service — see chat notes for details
+  // and a more robust alternative if you need guaranteed uptime.
+  const COUNTER_URL = "https://countapi.mileshilliard.com/api/v1/hit/ume-preschool-aadhar-camp-sep2026";
+  const COUNTER_KEY = "ume-preschool-aadhar-camp-sep2026";
+
+  // ---------------------------------------------------------
+  // ADMIN-ONLY: reset the token counter back to 0.
+  // Intentionally NOT wired to any button in the UI, so a
+  // visitor can't trigger it by accident.
+  // To use: open this page, open the browser console (F12 or
+  // Cmd+Opt+J), type resetAadharCounter() and press Enter.
+  // ---------------------------------------------------------
+  window.resetAadharCounter = async function () {
+    try {
+      const res = await fetch(`https://countapi.mileshilliard.com/api/v1/set/${COUNTER_KEY}?value=0`);
+      const data = await res.json();
+      console.log("Token counter reset. New value:", data.value);
+      return data.value;
+    } catch (err) {
+      console.error("Could not reset counter:", err);
+    }
+  };
+
+  const form = document.getElementById('regForm');
+  const contact = document.getElementById('contact');
+  const saveBtn = document.getElementById('saveBtn');
+  const statusMsg = document.getElementById('statusMsg');
+  const tokenDisplay = document.getElementById('tokenDisplay');
+  const tokenLabel = document.getElementById('tokenLabel');
+
+  contact.addEventListener('input', () => {
+    contact.value = contact.value.replace(/[^0-9]/g, '').slice(0, 10);
+  });
+
+  async function getNextToken() {
+    try {
+      const res = await fetch(COUNTER_URL);
+      const data = await res.json();
+      return String(data.value);
+    } catch (err) {
+      // Fallback so registration never blocks if the counter is unreachable.
+      // Staff should cross-check these against the Google Sheet manually.
+      return "T-" + String(Date.now()).slice(-5);
+    }
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const biometricsChoice = form.querySelector('input[name="biometrics"]:checked');
+
+    if (!form.fullName.value.trim() || !form.changes.value.trim() || contact.value.length !== 10 || !biometricsChoice) {
+      if (!form.fullName.value.trim()) { form.fullName.focus(); }
+      else if (!form.changes.value.trim()) { form.changes.focus(); }
+      else if (contact.value.length !== 10) { contact.focus(); }
+      else if (!biometricsChoice) { statusMsg.className = "status-msg show error"; statusMsg.innerHTML = '<div class="line1">Please select whether biometrics are recently updated.<span class="line1-ta">பயோமெட்ரிக் புதுப்பிக்கப்பட்டதா என்பதைத் தேர்ந்தெடுக்கவும்.</span></div>'; }
+      return;
+    }
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Saving...";
+
+    const token = await getNextToken();
+    tokenDisplay.textContent = "#" + token;
+    tokenLabel.textContent = "Your token number";
+
+    const payload = new FormData();
+    payload.append(ENTRY_IDS.fullName, form.fullName.value.trim());
+    payload.append(ENTRY_IDS.changes, form.changes.value.trim());
+    payload.append(ENTRY_IDS.contact, contact.value);
+    payload.append(ENTRY_IDS.biometrics, biometricsChoice.value);
+    payload.append(ENTRY_IDS.token, token);
+
+    try {
+      await fetch(GOOGLE_FORM_ACTION, { method: "POST", mode: "no-cors", body: payload });
+
+      statusMsg.className = "status-msg show success";
+      statusMsg.innerHTML =
+        '<div class="line1">Your details have been saved successfully!' +
+        '<span class="line1-ta">உங்கள் விவரங்கள் வெற்றிகரமாக சேமிக்கப்பட்டன!</span></div>' +
+        '<div class="token-line">Your Token Number: <b>#' + token + '</b>' +
+        '<span class="ta">உங்கள் டோக்கன் எண்: <b>#' + token + '</b></span></div>';
+
+      form.reset();
+      saveBtn.textContent = "Save";
+      saveBtn.disabled = false;
+    } catch (err) {
+      statusMsg.className = "status-msg show error";
+      statusMsg.innerHTML =
+        '<div class="line1">Something went wrong. Please try again or call us directly.' +
+        '<span class="line1-ta">ஏதோ தவறு நடந்துள்ளது. மீண்டும் முயற்சிக்கவும்.</span></div>';
+      saveBtn.textContent = "Save";
+      saveBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
